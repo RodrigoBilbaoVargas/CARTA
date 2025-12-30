@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Dayana 💙</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes stars {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1f3a 0%, #2d1b4e 50%, #1a1f3a 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            color: #fff;
+        }
+
+        /* Efecto de estrellas de fondo */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: stars 3s ease-in-out infinite;
+        }
+
+        /* Sol y Luna decorativos */
+        .sun-moon-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
+        }
+
+        .sun {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #ffd700 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .moon {
+            position: absolute;
+            bottom: 10%;
+            left: 10%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #93c5fd 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Contenedor principal */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Header con título */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, #ffd700, #93c5fd, #ffd700);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shine 3s linear infinite;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #93c5fd;
+            opacity: 0.9;
+        }
+
+        /* Grid principal con videos y carta */
+        .main-content {
+            display: grid;
+            grid-template-columns: 200px 1fr 200px;
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 3rem;
+        }
+
+        /* Videos laterales */
+        .video-container {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .video-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1rem;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-box:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .video-box video {
+            width: 100%;
+            border-radius: 15px;
+            display: block;
+        }
+
+        /* Carta central */
+        .carta-container {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3rem;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 0 50px rgba(255, 215, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carta-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 215, 0, 0.05),
+                transparent
+            );
+            animation: shine 6s linear infinite;
+        }
+
+        .carta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .carta-content h2 {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .carta-content p {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #e5e7eb;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .carta-content p:first-of-type::first-letter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+            float: left;
+            margin-right: 10px;
+            line-height: 0.8;
+        }
+
+        /* Sección de botones */
+        .buttons-section {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 2px solid rgba(147, 197, 253, 0.3);
+        }
+
+        .buttons-section h3 {
+            font-size: 2rem;
+            color: #93c5fd;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(147, 197, 253, 0.5);
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .choice-button {
+            padding: 1.5rem 3rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .choice-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .choice-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-si {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1f3a;
+        }
+
+        .btn-si:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 100%);
+            color: #1a1f3a;
+        }
+
+        .btn-no:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(147, 197, 253, 0.6);
+        }
+
+        /* Control de música */
+        .music-control {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .music-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffd700 0%, #93c5fd 100%);
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #1a1f3a;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-button:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Confirmación de lectura */
+        .read-confirmation {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 2px solid rgba(147, 197, 253, 0.3);
+            margin-top: 4rem;
+        }
+
+        .read-message {
+            font-size: 1.2rem;
+            color: #93c5fd;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .confirm-read-btn {
+            padding: 1.5rem 3rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 100%);
+            color: #1a1f3a;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .confirm-read-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(147, 197, 253, 0.6);
+        }
+
+        /* Animación de aparición de botones */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .buttons-section.show {
+            display: block !important;
+            animation: slideUp 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .read-confirmation.hide {
+            animation: fadeOut 0.5s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .video-container {
+                position: static;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .video-box {
+                margin-bottom: 0;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .carta-container {
+                padding: 2rem;
+            }
+
+            .carta-content h2 {
+                font-size: 2rem;
+            }
+
+            .carta-content p {
+                font-size: 1.1rem;
+            }
+
+            .buttons-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .choice-button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .video-container {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .carta-content p {
+                font-size: 1rem;
+                line-height: 1.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Estrellas animadas -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Sol y Luna decorativos -->
+    <div class="sun-moon-container">
+        <div class="sun"></div>
+        <div class="moon"></div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🌙 Para Ti Dormilona ☀️</h1>
+            <p>...</p>
+        </div>
+
+        <!-- Contenido principal con videos y carta -->
+        <div class="main-content">
+            <!-- Videos izquierda -->
+            <div class="video-container">
+                <div class="video-box">
+                    <video autoplay loop muted playsinline>
+                        <source src="./videos/video1.mp4.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-box">
+                    <video autoplay loop muted playsinline>
+                        <source src="./videos/video3.mp4.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <!-- Carta central -->
+            <div class="carta-container">
+                <div class="carta-content">
+                    <h2>Antes de nada Hola xd</h2>
+                    
+                    <p>
+                        Diras porque esta carta, yo igual me pregunto lo mismo, velo que esto lo hize en la madrugada, asi que si vez un error de ortografia, ignoralo xd</p>
+
+                    <p>
+                        Sé que ha pasado tiempo, se que las cosas cambian y no solo las cosas sino nosotros mismos, hay algo que necesito decirte y no encontraba el momento o las palabras correctas. Por eso hice esto. Porque algunas cosas son más fáciles de escribir que de decir en persona.
+                    </p>
+
+                    <p>
+                        Pero antes puse videitos de stikers xd a modo de que me recuerda a los stikers que me mandas, no los iba a colocar, pero me parecio divertido asi que deje los stikers ahi</p>
+
+                    <p>
+                        Bueno ahora si, si me vez ahi medio nervioso es porque si lo estoy, hay cosas que no cambian, como lo nervioso que  me pones cuando estoy cerca de ti, pero eso no es el punto, te tengo un detalle, si ya has leido hasta aqui, date la vuelta.
+                    </p>
+
+                    <p>
+                        El proposito de esto es, talvez ya lo sabes, talvez no pèro me gustas y mucho y no solo ahora, desde que te conoci, me pareciste una chica increible mientras te iba conociendo, mas haya de lo que haya pasado , me sigues gustando y es la razon del porque hago todo esto, aveces uno no encuentra las palabras correctas para decir o para expresarse, y es lo que me pasaba contigo y me pasa sigue, podre sonar muy cursi y si creo que si, quisiera que las cosas entre nosotros sea diferente pero para que sea asi, la decision no es de una persona sino de dos, y cuando digo diferente me refiero a intentar y no de una vez y volver, sino volver a conocernos, pero con la intencion de intentar y si no estas dispuesta, lo entendere, pero es una decision que debes elegir
+                    </p>
+
+                    <p style="text-align: center; margin-top: 3rem; font-size: 1.3rem; color: #ffd700;">
+                        Y por eso te pregunto...
+                    </p>
+                </div>
+            </div>
+
+            <!-- Videos derecha -->
+            <div class="video-container">
+                <div class="video-box">
+                    <video autoplay loop muted playsinline>
+                        <source src="./videos/video4.mp4.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-box">
+                    <video autoplay loop muted playsinline>
+                        <source src="./videos/video2.mp4.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones de decisión -->
+        <div class="buttons-section" id="buttonsSection" style="display: none;">
+            <h3>Queres intentarlo....</h3>
+            <div class="buttons-container">
+                <button class="choice-button btn-si" onclick="elegirOpcion('si')">
+                    ✨ Si
+                </button>
+                <button class="choice-button btn-no" onclick="elegirOpcion('no')">
+                    🌙 No
+                </button>
+            </div>
+        </div>
+
+        <!-- Mensaje de espera y botón de confirmación -->
+        <div class="read-confirmation" id="readConfirmation">
+            <p class="read-message">📖 Los botones aparecerán cuando llegues al final...</p>
+            <button class="confirm-read-btn" id="confirmReadBtn" style="display: none;" onclick="mostrarBotones()">
+                💙 He terminado de leer
+            </button>
+        </div>
+    </div>
+
+    <!-- Control de música -->
+    <div class="music-control">
+        <button class="music-button" onclick="toggleMusic()" id="musicBtn">
+            🎵
+        </button>
+    </div>
+
+    <!-- Música de fondo (MP3) -->
+    <audio id="background-music" loop>
+        <source src="./videos/cancion_principal.mp3.mpeg" type="audio/mpeg">
+    </audio>
+
+    <script type="module">
+      
+
+        // Crear estrellas
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Control de música CON CONTINUIDAD
+        let musicPlaying = false;
+        const audio = document.getElementById('background-music');
+        
+        // Restaurar tiempo de música si existe
+        const savedTime = sessionStorage.getItem('musicTime');
+        if (savedTime) {
+            audio.currentTime = parseFloat(savedTime);
+        }
+        
+        // Guardar tiempo cada 500ms
+        setInterval(() => {
+            if (!audio.paused) {
+                sessionStorage.setItem('musicTime', audio.currentTime);
+            }
+        }, 500);
+        
+        // Intentar reproducir automáticamente
+        window.addEventListener('load', function() {
+            audio.play().then(() => {
+                musicPlaying = true;
+                document.getElementById('musicBtn').textContent = '🎵';
+            }).catch(err => {
+                console.log('Autoplay bloqueado');
+                musicPlaying = false;
+            });
+        });
+        
+        window.toggleMusic = function() {
+            const btn = document.getElementById('musicBtn');
+            
+            if (musicPlaying) {
+                audio.pause();
+                btn.textContent = '🔇';
+                musicPlaying = false;
+            } else {
+                audio.play();
+                btn.textContent = '🎵';
+                musicPlaying = true;
+            }
+        }
+
+        // Iniciar música con cualquier click
+        document.body.addEventListener('click', function() {
+            if (!musicPlaying) {
+                audio.play();
+                document.getElementById('musicBtn').textContent = '🎵';
+                musicPlaying = true;
+            }
+        }, { once: true }); 
+
+        // Guardar tiempo antes de salir
+        window.addEventListener('beforeunload', function() {
+            sessionStorage.setItem('musicTime', audio.currentTime);
+        });
+
+        // Sistema de detección de scroll para mostrar botón de confirmación
+        let hasScrolledToBottom = false;
+        
+        window.addEventListener('scroll', function() {
+            if (hasScrolledToBottom) return;
+            
+            // Calcular si llegó al final (con margen de 100px)
+            const scrollPosition = window.innerHeight + window.scrollY;
+            const pageHeight = document.documentElement.scrollHeight;
+            
+            if (scrollPosition >= pageHeight - 100) {
+                hasScrolledToBottom = true;
+                mostrarBotonConfirmacion();
+            }
+        });
+
+        function mostrarBotonConfirmacion() {
+            const confirmBtn = document.getElementById('confirmReadBtn');
+            const readMessage = document.querySelector('.read-message');
+            
+            // Ocultar mensaje de espera
+            if (readMessage) {
+                readMessage.style.display = 'none';
+            }
+            
+            // Mostrar botón de confirmación
+            if (confirmBtn) {
+                confirmBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Función para mostrar los botones finales
+        window.mostrarBotones = function() {
+            const buttonsSection = document.getElementById('buttonsSection');
+            const readConfirmation = document.getElementById('readConfirmation');
+            
+            // Ocultar sección de confirmación
+            readConfirmation.classList.add('hide');
+            
+            // Mostrar botones después de una pequeña pausa
+            setTimeout(() => {
+                readConfirmation.style.display = 'none';
+                buttonsSection.classList.add('show');
+                buttonsSection.style.display = 'block';
+                
+                // Scroll suave hacia los botones
+                buttonsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 500);
+        }
+
+        // Manejo de elecciones
+        window.elegirOpcion = async function(opcion) {
+            // Guardar tiempo de música antes de cambiar página
+            sessionStorage.setItem('musicTime', audio.currentTime);
+            
+            // Guardar elección en localStorage
+            localStorage.setItem('eleccion_dayana', opcion);
+            
+            if (opcion === 'si') {
+                window.location.href = 'carta_si.html';
+            } else {
+                window.location.href = 'carta_no.html';
+            }
+        }
+
+        // Verificar si ya eligió (solo si NO está en modo edición)
+        window.addEventListener('load', function() {
+            if (modoEdicion) return;
+            
+            const eleccion = localStorage.getItem('eleccion_dayana');
+            if (eleccion) {
+                if (eleccion === 'si') {
+                    window.location.href = 'carta_si.html';
+                } else {
+                    window.location.href = 'carta_no.html';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

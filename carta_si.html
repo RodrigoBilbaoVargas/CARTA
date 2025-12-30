@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gracias por la oportunidad 💙</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.05); }
+        }
+
+        @keyframes shine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        /* Partículas doradas */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Sol gigante decorativo */
+        .sun-decoration {
+            position: fixed;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+        }
+
+        /* Contenedor principal */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            width: 100%;
+            background: rgba(26, 31, 58, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 4rem;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                inset 0 0 100px rgba(255, 215, 0, 0.1);
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            animation: fadeIn 1s ease;
+        }
+
+        /* Header con corazón */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .heart-icon {
+            font-size: 5rem;
+            display: inline-block;
+            animation: heartbeat 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            animation: fadeIn 1.5s ease;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            color: #93c5fd;
+            opacity: 0.9;
+            animation: fadeIn 2s ease;
+        }
+
+        /* Contenido de la carta */
+        .carta-content {
+            color: #e5e7eb;
+            line-height: 2;
+        }
+
+        .carta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-align: justify;
+            animation: fadeIn 2.5s ease;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .carta-content p:first-of-type::first-letter {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ffd700;
+            float: left;
+            margin-right: 10px;
+            line-height: 0.8;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Promesas */
+        .promesas {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #ffd700;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            animation: fadeIn 3s ease;
+        }
+
+        .promesas h3 {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .promesas ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .promesas li {
+            color: #e5e7eb;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .promesas li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            font-size: 1.3rem;
+        }
+
+        /* Firma */
+        .firma {
+            text-align: right;
+            margin-top: 3rem;
+            font-size: 1.5rem;
+            color: #ffd700;
+            font-style: italic;
+            animation: fadeIn 4s ease;
+        }
+
+        /* Botón de volver */
+        .volver-btn {
+            display: block;
+            margin: 3rem auto 0;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1f3a;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+        }
+
+        .volver-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Control de música */
+        .music-control {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .music-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            border: 3px solid #1a1f3a;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #1a1f3a;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-button:hover {
+            transform: scale(1.15) rotate(15deg);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+                border-radius: 30px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .heart-icon {
+                font-size: 4rem;
+            }
+
+            .carta-content p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+            }
+
+            .promesas li {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .carta-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas decorativas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Sol decorativo -->
+    <div class="sun-decoration"></div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="heart-icon">💛</div>
+            <h1>OMG</h1>
+            <p>Elegiste intentarlo...</p>
+        </div>
+
+        <!-- Contenido de la carta -->
+        <div class="carta-content">
+            <p>
+                No sabes cuánto significa para mí que hayas elegido intentar. <span class="highlight"></span> Dejame demostrarte que las cosas pueden ser diferentes.
+            </p>
+
+            
+            
+
+            <p style="text-align: center; font-size: 1.4rem; color: #ffd700; margin-top: 3rem;">
+                 💛
+            </p>
+
+            <div class="firma">
+                ~ Rodrigo
+            </div>
+        </div>
+
+        <a href="index.html" class="volver-btn">💫 </a>
+    </div>
+
+   <!-- Control de música -->
+    <div class="music-control">
+        <button class="music-button" onclick="toggleMusic()" id="musicBtn">
+            🎵
+        </button>
+    </div>
+
+    <!-- Música de fondo -->
+    <audio id="background-music" loop>
+        <source src="./videos/cancion_principal.mp3.mpeg" type="audio/mpeg">
+    </audio>
+
+    <script>
+       
+        // Crear partículas
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (3 + Math.random() * 3) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Control de música CON CONTINUIDAD
+        let musicPlaying = false;
+        const audio = document.getElementById('background-music');
+        
+        // Restaurar tiempo de música
+        const savedTime = sessionStorage.getItem('musicTime');
+        if (savedTime) {
+            audio.currentTime = parseFloat(savedTime);
+        }
+        
+        // Guardar tiempo cada 500ms
+        setInterval(() => {
+            if (!audio.paused) {
+                sessionStorage.setItem('musicTime', audio.currentTime);
+            }
+        }, 500);
+        
+        window.addEventListener('load', function() {
+            audio.play().then(() => {
+                musicPlaying = true;
+                document.getElementById('musicBtn').textContent = '🎵';
+            }).catch(err => {
+                console.log('Autoplay bloqueado');
+            });
+        });
+        
+        window.toggleMusic = function() {
+            const btn = document.getElementById('musicBtn');
+            
+            if (musicPlaying) {
+                audio.pause();
+                btn.textContent = '🔇';
+                musicPlaying = false;
+            } else {
+                audio.play();
+                btn.textContent = '🎵';
+                musicPlaying = true;
+            }
+        }
+
+        document.body.addEventListener('click', function() {
+            if (!musicPlaying) {
+                audio.play();
+                document.getElementById('musicBtn').textContent = '🎵';
+                musicPlaying = true;
+            }
+        }, { once: true });
+
+        // Guardar tiempo antes de salir
+        window.addEventListener('beforeunload', function() {
+            sessionStorage.setItem('musicTime', audio.currentTime);
+        });
+    </script>
+</body>
+</html>
