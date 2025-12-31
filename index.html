@@ -583,6 +583,24 @@
 
     <script type="module">
       
+  // MODO EDICIÓN: Presiona Ctrl + E para desbloquear navegación
+        let modoEdicion = localStorage.getItem('modo_edicion') === 'true' || false;
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'e') {
+                e.preventDefault();
+                modoEdicion = !modoEdicion;
+                localStorage.setItem('modo_edicion', modoEdicion);
+                
+                if (modoEdicion) {
+                    alert('🔓 MODO EDICIÓN ACTIVADO\n\n✅ Puedes navegar libremente\n✅ No hay restricciones\n✅ Presiona Ctrl+E de nuevo para desactivar');
+                    localStorage.removeItem('eleccion_dayana');
+                } else {
+                    alert('🔒 Modo edición DESACTIVADO\n\nAhora funciona normalmente');
+                }
+            }
+        });
+
 
         // Crear estrellas
         const starsContainer = document.getElementById('stars');
