@@ -41,7 +41,6 @@
             color: #fff;
         }
 
-        /* Efecto de estrellas de fondo */
         .stars {
             position: fixed;
             top: 0;
@@ -61,7 +60,6 @@
             animation: stars 3s ease-in-out infinite;
         }
 
-        /* Sol y Luna decorativos */
         .sun-moon-container {
             position: fixed;
             top: 50%;
@@ -96,7 +94,6 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        /* Contenedor principal */
         .container {
             position: relative;
             z-index: 2;
@@ -109,7 +106,6 @@
             justify-content: center;
         }
 
-        /* Header con título */
         .header {
             text-align: center;
             margin-bottom: 3rem;
@@ -135,7 +131,6 @@
             opacity: 0.9;
         }
 
-        /* Grid principal con videos y carta */
         .main-content {
             display: grid;
             grid-template-columns: 200px 1fr 200px;
@@ -144,7 +139,6 @@
             margin-bottom: 3rem;
         }
 
-        /* Videos laterales */
         .video-container {
             position: sticky;
             top: 2rem;
@@ -172,7 +166,6 @@
             display: block;
         }
 
-        /* Carta central */
         .carta-container {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
@@ -233,7 +226,6 @@
             line-height: 0.8;
         }
 
-        /* Sección de botones */
         .buttons-section {
             text-align: center;
             margin-top: 4rem;
@@ -311,7 +303,6 @@
             box-shadow: 0 15px 40px rgba(147, 197, 253, 0.6);
         }
 
-        /* Control de música */
         .music-control {
             position: fixed;
             bottom: 2rem;
@@ -340,7 +331,6 @@
             box-shadow: 0 12px 35px rgba(255, 215, 0, 0.5);
         }
 
-        /* Confirmación de lectura */
         .read-confirmation {
             text-align: center;
             padding: 3rem 2rem;
@@ -369,7 +359,6 @@
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 0.5s ease;
         }
 
         .confirm-read-btn:hover {
@@ -377,7 +366,6 @@
             box-shadow: 0 15px 40px rgba(147, 197, 253, 0.6);
         }
 
-        /* Animación de aparición de botones */
         @keyframes slideUp {
             from {
                 opacity: 0;
@@ -405,7 +393,6 @@
             to { opacity: 0; }
         }
 
-        /* Responsive */
         @media (max-width: 968px) {
             .main-content {
                 grid-template-columns: 1fr;
@@ -470,26 +457,20 @@
     </style>
 </head>
 <body>
-    <!-- Estrellas animadas -->
     <div class="stars" id="stars"></div>
 
-    <!-- Sol y Luna decorativos -->
     <div class="sun-moon-container">
         <div class="sun"></div>
         <div class="moon"></div>
     </div>
 
-    <!-- Contenedor principal -->
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <h1>🌙 Para Ti Dormilona ☀️</h1>
             <p>...</p>
         </div>
 
-        <!-- Contenido principal con videos y carta -->
         <div class="main-content">
-            <!-- Videos izquierda -->
             <div class="video-container">
                 <div class="video-box">
                     <video autoplay loop muted playsinline>
@@ -503,7 +484,6 @@
                 </div>
             </div>
 
-            <!-- Carta central -->
             <div class="carta-container">
                 <div class="carta-content">
                     <h2>Antes de nada Hola xd</h2>
@@ -532,7 +512,6 @@
                 </div>
             </div>
 
-            <!-- Videos derecha -->
             <div class="video-container">
                 <div class="video-box">
                     <video autoplay loop muted playsinline>
@@ -547,7 +526,6 @@
             </div>
         </div>
 
-        <!-- Botones de decisión -->
         <div class="buttons-section" id="buttonsSection" style="display: none;">
             <h3>Queres intentarlo....</h3>
             <div class="buttons-container">
@@ -560,7 +538,6 @@
             </div>
         </div>
 
-        <!-- Mensaje de espera y botón de confirmación -->
         <div class="read-confirmation" id="readConfirmation">
             <p class="read-message">📖 Los botones aparecerán cuando llegues al final...</p>
             <button class="confirm-read-btn" id="confirmReadBtn" style="display: none;" onclick="mostrarBotones()">
@@ -569,39 +546,17 @@
         </div>
     </div>
 
-    <!-- Control de música -->
     <div class="music-control">
         <button class="music-button" onclick="toggleMusic()" id="musicBtn">
             🎵
         </button>
     </div>
 
-    <!-- Música de fondo (MP3) -->
     <audio id="background-music" loop>
         <source src="./videos/cancion_principal.mp3.mpeg" type="audio/mpeg">
     </audio>
 
-    <script type="module">
-      
-  // MODO EDICIÓN: Presiona Ctrl + E para desbloquear navegación
-        let modoEdicion = localStorage.getItem('modo_edicion') === 'true' || false;
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.key === 'e') {
-                e.preventDefault();
-                modoEdicion = !modoEdicion;
-                localStorage.setItem('modo_edicion', modoEdicion);
-                
-                if (modoEdicion) {
-                    alert('🔓 MODO EDICIÓN ACTIVADO\n\n✅ Puedes navegar libremente\n✅ No hay restricciones\n✅ Presiona Ctrl+E de nuevo para desactivar');
-                    localStorage.removeItem('eleccion_dayana');
-                } else {
-                    alert('🔒 Modo edición DESACTIVADO\n\nAhora funciona normalmente');
-                }
-            }
-        });
-
-
+    <script>
         // Crear estrellas
         const starsContainer = document.getElementById('stars');
         for (let i = 0; i < 100; i++) {
@@ -613,24 +568,21 @@
             starsContainer.appendChild(star);
         }
 
-        // Control de música CON CONTINUIDAD
+        // Control de música
         let musicPlaying = false;
         const audio = document.getElementById('background-music');
         
-        // Restaurar tiempo de música si existe
         const savedTime = sessionStorage.getItem('musicTime');
         if (savedTime) {
             audio.currentTime = parseFloat(savedTime);
         }
         
-        // Guardar tiempo cada 500ms
         setInterval(() => {
             if (!audio.paused) {
                 sessionStorage.setItem('musicTime', audio.currentTime);
             }
         }, 500);
         
-        // Intentar reproducir automáticamente
         window.addEventListener('load', function() {
             audio.play().then(() => {
                 musicPlaying = true;
@@ -655,7 +607,6 @@
             }
         }
 
-        // Iniciar música con cualquier click
         document.body.addEventListener('click', function() {
             if (!musicPlaying) {
                 audio.play();
@@ -664,18 +615,16 @@
             }
         }, { once: true }); 
 
-        // Guardar tiempo antes de salir
         window.addEventListener('beforeunload', function() {
             sessionStorage.setItem('musicTime', audio.currentTime);
         });
 
-        // Sistema de detección de scroll para mostrar botón de confirmación
+        // Sistema de detección de scroll
         let hasScrolledToBottom = false;
         
         window.addEventListener('scroll', function() {
             if (hasScrolledToBottom) return;
             
-            // Calcular si llegó al final (con margen de 100px)
             const scrollPosition = window.innerHeight + window.scrollY;
             const pageHeight = document.documentElement.scrollHeight;
             
@@ -689,42 +638,36 @@
             const confirmBtn = document.getElementById('confirmReadBtn');
             const readMessage = document.querySelector('.read-message');
             
-            // Ocultar mensaje de espera
             if (readMessage) {
                 readMessage.style.display = 'none';
             }
             
-            // Mostrar botón de confirmación
             if (confirmBtn) {
                 confirmBtn.style.display = 'inline-block';
             }
         }
 
-        // Función para mostrar los botones finales
         window.mostrarBotones = function() {
             const buttonsSection = document.getElementById('buttonsSection');
             const readConfirmation = document.getElementById('readConfirmation');
             
-            // Ocultar sección de confirmación
             readConfirmation.classList.add('hide');
             
-            // Mostrar botones después de una pequeña pausa
             setTimeout(() => {
                 readConfirmation.style.display = 'none';
                 buttonsSection.classList.add('show');
                 buttonsSection.style.display = 'block';
                 
-                // Scroll suave hacia los botones
                 buttonsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 500);
         }
 
-        // Manejo de elecciones
-        window.elegirOpcion = async function(opcion) {
-            // Guardar tiempo de música antes de cambiar página
+        // FUNCIÓN MODIFICADA: Una vez que elija, guarda la decisión
+        window.elegirOpcion = function(opcion) {
+            // Guardar tiempo de música
             sessionStorage.setItem('musicTime', audio.currentTime);
             
-            // Guardar elección en localStorage
+            // Guardar elección en localStorage (PERMANENTE)
             localStorage.setItem('eleccion_dayana', opcion);
             
             if (opcion === 'si') {
@@ -734,12 +677,11 @@
             }
         }
 
-        // Verificar si ya eligió (solo si NO está en modo edición)
+        // VERIFICAR SI YA ELIGIÓ: Si ya eligió, redirigir automáticamente
         window.addEventListener('load', function() {
-            if (modoEdicion) return;
-            
             const eleccion = localStorage.getItem('eleccion_dayana');
             if (eleccion) {
+                // Ya eligió, redirigir a su página correspondiente
                 if (eleccion === 'si') {
                     window.location.href = 'carta_si.html';
                 } else {

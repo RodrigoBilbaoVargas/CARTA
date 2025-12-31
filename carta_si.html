@@ -45,7 +45,6 @@
             padding: 2rem;
         }
 
-        /* Partículas doradas */
         .particles {
             position: fixed;
             top: 0;
@@ -65,7 +64,6 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        /* Sol gigante decorativo */
         .sun-decoration {
             position: fixed;
             top: -100px;
@@ -84,7 +82,6 @@
             50% { transform: scale(1.2); opacity: 0.5; }
         }
 
-        /* Contenedor principal */
         .container {
             position: relative;
             z-index: 2;
@@ -101,7 +98,6 @@
             animation: fadeIn 1s ease;
         }
 
-        /* Header con corazón */
         .header {
             text-align: center;
             margin-bottom: 3rem;
@@ -130,7 +126,6 @@
             animation: fadeIn 2s ease;
         }
 
-        /* Contenido de la carta */
         .carta-content {
             color: #e5e7eb;
             line-height: 2;
@@ -159,44 +154,6 @@
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
-        /* Promesas */
-        .promesas {
-            background: rgba(255, 215, 0, 0.1);
-            border-left: 4px solid #ffd700;
-            padding: 2rem;
-            margin: 2rem 0;
-            border-radius: 15px;
-            animation: fadeIn 3s ease;
-        }
-
-        .promesas h3 {
-            color: #ffd700;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .promesas ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .promesas li {
-            color: #e5e7eb;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            padding-left: 2rem;
-            position: relative;
-        }
-
-        .promesas li::before {
-            content: '✨';
-            position: absolute;
-            left: 0;
-            font-size: 1.3rem;
-        }
-
-        /* Firma */
         .firma {
             text-align: right;
             margin-top: 3rem;
@@ -206,29 +163,6 @@
             animation: fadeIn 4s ease;
         }
 
-        /* Botón de volver */
-        .volver-btn {
-            display: block;
-            margin: 3rem auto 0;
-            padding: 1.2rem 3rem;
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            color: #1a1f3a;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            text-decoration: none;
-        }
-
-        .volver-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
-        }
-
-        /* Control de música */
         .music-control {
             position: fixed;
             bottom: 2rem;
@@ -257,7 +191,6 @@
             box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .container {
                 padding: 2rem;
@@ -275,10 +208,6 @@
             .carta-content p {
                 font-size: 1.1rem;
                 line-height: 1.8;
-            }
-
-            .promesas li {
-                font-size: 1rem;
             }
         }
 
@@ -302,29 +231,21 @@
     </style>
 </head>
 <body>
-    <!-- Partículas decorativas -->
     <div class="particles" id="particles"></div>
 
-    <!-- Sol decorativo -->
     <div class="sun-decoration"></div>
 
-    <!-- Contenedor principal -->
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <div class="heart-icon">💛</div>
             <h1>OMG</h1>
             <p>Elegiste intentarlo...</p>
         </div>
 
-        <!-- Contenido de la carta -->
         <div class="carta-content">
             <p>
                 No sabes cuánto significa para mí que hayas elegido intentar. <span class="highlight"></span> Dejame demostrarte que las cosas pueden ser diferentes.
             </p>
-
-            
-            
 
             <p style="text-align: center; font-size: 1.4rem; color: #ffd700; margin-top: 3rem;">
                  💛
@@ -334,40 +255,28 @@
                 ~ Rodrigo
             </div>
         </div>
-
-        <a href="index.html" class="volver-btn">💫 </a>
     </div>
 
-   <!-- Control de música -->
-    <div class="music-control">
+   <div class="music-control">
         <button class="music-button" onclick="toggleMusic()" id="musicBtn">
             🎵
         </button>
     </div>
 
-    <!-- Música de fondo -->
     <audio id="background-music" loop>
         <source src="./videos/cancion_principal.mp3.mpeg" type="audio/mpeg">
     </audio>
 
     <script>
-       // MODO EDICIÓN: Presiona Ctrl + E para desbloquear
-        let modoEdicion = localStorage.getItem('modo_edicion') === 'true' || false;
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.key === 'e') {
-                e.preventDefault();
-                modoEdicion = !modoEdicion;
-                localStorage.setItem('modo_edicion', modoEdicion);
-                
-                if (modoEdicion) {
-                    alert('🔓 MODO EDICIÓN ACTIVADO');
-                    localStorage.removeItem('eleccion_dayana');
-                } else {
-                    alert('🔒 Modo edición DESACTIVADO');
-                }
+        // Verificar que llegó aquí con la elección correcta
+        window.addEventListener('load', function() {
+            const eleccion = localStorage.getItem('eleccion_dayana');
+            if (eleccion !== 'si') {
+                // Si no eligió "sí" o no hay elección, redirigir
+                window.location.href = 'index.html';
             }
         });
+
         // Crear partículas
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 50; i++) {
@@ -380,17 +289,15 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Control de música CON CONTINUIDAD
+        // Control de música
         let musicPlaying = false;
         const audio = document.getElementById('background-music');
         
-        // Restaurar tiempo de música
         const savedTime = sessionStorage.getItem('musicTime');
         if (savedTime) {
             audio.currentTime = parseFloat(savedTime);
         }
         
-        // Guardar tiempo cada 500ms
         setInterval(() => {
             if (!audio.paused) {
                 sessionStorage.setItem('musicTime', audio.currentTime);
@@ -428,7 +335,6 @@
             }
         }, { once: true });
 
-        // Guardar tiempo antes de salir
         window.addEventListener('beforeunload', function() {
             sessionStorage.setItem('musicTime', audio.currentTime);
         });
